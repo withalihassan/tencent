@@ -95,7 +95,7 @@ $result = $mysqli->query(
 </head>
 <body class="p-4">
 <div class="container">
-    <h1 class="mb-4">Tencent Cloud API Key Manager</h1>
+    <h1 class="mb-4">Tencent Cloud API Key Manager User: <?php echo $_SESSION['user_id']; ?></h1>
     <?php if ($message): ?>
         <div class="alert alert-<?= $messageClass ?>"><?= $message ?></div>
     <?php endif; ?>
