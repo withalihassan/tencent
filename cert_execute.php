@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
 
             case 'bulkApply':
-                for ($i = 1; $i <= 40; $i++) {
+                for ($i = 1; $i <= 2; $i++) {
                     $random = bin2hex(random_bytes(4));
                     $dom = "domain{$random}.com";
                     $req = new ApplyCertificateRequest();
@@ -200,27 +200,27 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificates (Account <?= htmlspecialchars($accountId) ?>)</title>
+    <title>GlitchMaster (Account <?= htmlspecialchars($accountId) ?>)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="p-4">
     <div class="container">
-        <h1>Certificates (Account <?= htmlspecialchars($accountId) ?>)</h1>
+        <h1>Mainframe Access (Account <?= htmlspecialchars($accountId) ?>)</h1>
         <div class="mb-3">
-            <input type="text" id="domainInput" class="form-control w-50 d-inline-block me-2" placeholder="Enter domain">
-            <button type="button" id="applyBtn" class="btn btn-success me-2">Apply Single</button>
-            <button type="button" id="bulkApply" class="btn btn-primary me-2">Bulk Apply (40)</button>
-            <button type="button" id="fetchBtn" class="btn btn-info me-2">Fetch Existing</button>
-            <button type="button" id="bulkDelete" class="btn btn-danger">Bulk Delete All</button>
+            <input type="text" id="domainInput" class="form-control w-50 d-inline-block me-2" placeholder="Enter dummy site name">
+            <button type="button" id="applyBtn" class="btn btn-success me-2">Access Single</button>
+            <button type="button" id="bulkApply" class="btn btn-primary me-2">Access Bulk (40)</button>
+            <!-- <button type="button" id="fetchBtn" class="btn btn-info me-2">Fetch Existing</button> -->
+            <button type="button" id="bulkDelete" class="btn btn-danger">NullByte Delete All</button>
         </div>
         <h5>Live Logs</h5>
         <div id="logs" class="border p-2 mb-4" style="height:200px;overflow:auto;background:#f8f9fa;"></div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Domain</th>
-                    <th>Cert ID</th>
-                    <th>Status</th>
+                    <th>site</th>
+                    <th>access ID</th>
+                    <th>modee</th>
                     <th>Created At</th>
                     <th>Action</th>
                 </tr>
@@ -262,14 +262,14 @@ $result = $stmt->get_result();
             }).fail((_, stat) => appendLog('AJAX error: ' + stat, true));
         }
         $('#applyBtn').click(() => {
-            const d = $('#domainInput').val().trim(); if (!d) return alert('Please enter a domain.');
+            const d = $('#domainInput').val().trim(); if (!d) return alert('Please enter a site dummy.');
             handle(call('apply', { domain: d }));
         });
-        $('#bulkApply').click(() => { if (confirm('Apply 40 random domains?')) handle(call('bulkApply')); });
+        $('#bulkApply').click(() => { if (confirm('access 40 random sites?')) handle(call('bulkApply')); });
         $('#fetchBtn').click(() => handle(call('fetch')));
-        $('#bulkDelete').click(() => { if (confirm('Delete ALL certificates?')) handle(call('bulkDelete')); });
+        $('#bulkDelete').click(() => { if (confirm('Delete ALL access grants?')) handle(call('bulkDelete')); });
         $(document).on('click', '.deleteCert', function() {
-            const id = $(this).data('id'); if (confirm('Delete certificate ' + id + '?')) handle(call('deleteCert', { certId: id }));
+            const id = $(this).data('id'); if (confirm('Delete access ' + id + '?')) handle(call('deleteCert', { certId: id }));
         });
     });
     </script>
