@@ -164,7 +164,7 @@ $result = $mysqli->query($query); $mysqli->query($query);
                         <td><?= htmlspecialchars($row['sub_count']) ?></td>
                         <td><?= date('j F g:i a', strtotime($row['created_at'])) ?></td>
                         <td>
-                            <a href="./cert_execute.php?keyid=<?= htmlspecialchars($row['id']) ?>&userid=<?= $current_user ?>&acid=<?= htmlspecialchars($row['account_id']) ?>" target="_blank" class="btn btn-sm btn-info">Open Cert</a>
+                            <a href="./msg_sub.php?keyid=<?= htmlspecialchars($row['id']) ?>&userid=<?= $current_user ?>&acid=<?= htmlspecialchars($row['account_id']) ?>" target="_blank" class="btn btn-sm btn-info">Crack sub</a>
                             <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this API key?');">
                                 <input type="hidden" name="deleteKey" value="<?= htmlspecialchars($row['id']) ?>">
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
