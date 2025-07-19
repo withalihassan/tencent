@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
 
             case 'bulkApply':
-                for ($i = 1; $i <= 2; $i++) {
+                for ($i = 1; $i <= 40; $i++) {
                     $random = bin2hex(random_bytes(4));
                     $dom = "domain{$random}.com";
                     $req = new ApplyCertificateRequest();
